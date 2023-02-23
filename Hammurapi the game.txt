@@ -1,0 +1,110 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int main()
+{
+    int population, land, plague, harvest, landPrice, year;
+    population = 100;
+    land = 1000;
+    plague = 0;
+    harvest = 0;
+    landPrice = 20;
+    year = 0;
+  
+    printf("Хаммурапи - правитель Египта.\n");
+    printf("Вы будете править 10 лет, вам необходимо увеличить свою популяцию и расширить свои владения.\n\n");
+    
+    while (year < 10) 
+    {
+        printf("Текущий год [%d]:\n", year + 1);
+        
+        printf("Сколько земли вы хотите купить (1 - %d акров)? ", land);
+        int buy;
+        scanf("%d", &buy);
+        
+        // Покупка земли
+        int cost = buy * landPrice;
+        if (cost > population) 
+        {
+            printf("Вы не можете купить столько земли!\n");
+            buy = 0;
+        } 
+        else 
+        {
+            population -= cost;
+            land += buy;
+        }
+        
+        printf("Сколько земли вы хотите продать (1 - %d акров)? ", land);
+    
+        int sell;
+        scanf("%d", &sell);
+        if (sell > land) 
+        {
+            printf("Вы не можете продать земли больше, чем имеете!\n");
+            sell = 0;
+        } 
+        else 
+        {
+            population += sell * landPrice;
+            land -= sell;
+        }
+    
+        printf("Сколько зерен вы потратите, чтобы кормить ваше население (1 - %d бушелей)? ", harvest);
+        int feed;
+        scanf("%d", &feed);
+        if (feed > harvest) 
+        {
+            printf("У вас недостаточно зерна!\n");
+            feed = 0;
+        } 
+        else 
+        {
+            harvest -= feed;
+            population += feed % 10;
+        }
+    
+    // болезнь
+        int plaguePercent = rand() % 100;
+    
+        if (plaguePercent < 15) 
+        {
+            plague += rand() % (population / 2);
+        }
+    //
+    
+    
+    // урожай
+        
+        int temp = 0;
+        temp = land * rand() % 10;
+        
+        
+        population -= plague;
+        
+        if (temp < 0)
+        {
+            temp = 0;
+        }
+        else
+        {
+            harvest += temp;
+        }
+        population -= plague;
+    
+    // 
+    // результат
+    
+        printf("Популяция: %d\n", population);
+        printf("Земля: %d\n", land);
+        printf("Смерть от болезни: %d\n", plague);
+        printf("Урожая собрано: %d\n\n", harvest);
+     
+        year++;   
+    }
+    
+    
+    
+    return 0;
+}
