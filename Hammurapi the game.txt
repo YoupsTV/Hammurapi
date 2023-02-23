@@ -96,10 +96,11 @@ int main()
     // 
     // результат
     
-        printf("Популяция: %d\n", population);
         printf("Земля: %d\n", land);
-        printf("Смерть от болезни: %d\n", plague);
+        printf("Популяция: %d\n", population);
         printf("Урожая собрано: %d\n\n", harvest);
+        printf("Смерть от болезни: %d\n", plague);
+        
      
         year++;   
     }
